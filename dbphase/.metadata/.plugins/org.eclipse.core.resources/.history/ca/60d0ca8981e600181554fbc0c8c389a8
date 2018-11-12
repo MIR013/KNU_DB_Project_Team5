@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> sign in</h1>
+<form action="sign_in.jsp" method="POST">
+	<table>
+			<tr>
+				<td>*ID: <input type="text" name="signInID" required/></td>
+			</tr>
+			<tr>
+				<td>*PASSWORD: <input type="text" name="signInPASSWORD" required/></td>
+			</tr>
+	</table>
+</form>
+
+
+</body>
+</html>

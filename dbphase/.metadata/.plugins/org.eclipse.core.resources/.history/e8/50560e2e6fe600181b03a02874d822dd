@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> sign up</h1>
+	<form action="sign_up.jsp" method="POST">
+	<table>
+			<tr>
+				<tb>ID: <input type="text" name="signUpID"/></tb>
+			</tr>
+
+
+
+
+		</table>
+	</form>
+
+
+
+</body>
+</html>

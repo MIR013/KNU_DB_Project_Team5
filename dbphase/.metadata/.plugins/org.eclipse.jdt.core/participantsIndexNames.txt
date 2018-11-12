@@ -1,0 +1,3 @@
+INDEX VERSION 1.131
+/home/chacha/Desktop/database/dbphase/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/4003127793.index
+/Databaase/src

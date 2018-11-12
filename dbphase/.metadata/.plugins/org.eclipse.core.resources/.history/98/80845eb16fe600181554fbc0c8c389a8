@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> sign up</h1>
+	<form action="sign_up.jsp" method="POST">
+	<table>
+			<tr>
+				<tb>*ID: <input type="text" name="signUpID"/></tb>
+			</tr>
+			<tr>
+				<tb>*PASSWORD: <input type="text" name="signUpPASSWORD"/></tb>
+			</tr>
+			<tr>
+				<tb>NAME: <input type="text" name="signUpNAME"/></tb>
+			</tr>
+			<tr>
+				<tb>*ADDRESS: <input type="text" name="signUpID"/></tb>
+			</tr>
+			<tr>
+				<tb>*PHONE_NUMBER: <input type="text" name="signUpID"/></tb>
+			</tr>
+			<tr>
+				<tb>JOB: <input type="text" name="signUpID"/></tb>
+			</tr>
+			<tr>
+				<tb>TYPE: <input type="text" name="signUpID"/></tb>
+			</tr>
+			<tr>
+				<tb>SEX: <input type="text" name="signUpID"/></tb>
+			</tr>
+			<tr>
+				<tb>AGE: <input type="text" name="signUpID"/></tb>
+			</tr>
+
+
+
+
+		</table>
+	</form>
+
+
+
+</body>
+</html>

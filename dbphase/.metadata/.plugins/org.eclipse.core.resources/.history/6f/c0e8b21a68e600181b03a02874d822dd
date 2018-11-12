@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2> Welcome to Team5 </h2>
+	<form>
+		<table>
+			<tr>
+				<td> 1. <input type="button" name="sign_up" value="SIGN UP"/> </td>
+			</tr>
+			<tr>
+				<td> 2. <input type="button" name="sign_in" value="SIGN IN"/> </td>
+			</tr>
+	
+		</table>
+	</form>
+
+</body>
+</html>

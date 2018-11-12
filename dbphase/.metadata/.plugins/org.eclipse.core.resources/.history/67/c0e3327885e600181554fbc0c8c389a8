@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> --The Team5's Shopping Mall--</h1>
+
+<form>
+	<input type="button" value="My Page" onclick="location.href='myPage.html'"/>
+	</br>
+	
+	<input type="button" value="Search Category" onclick="location.href='search_category.html'"/>
+	</br>
+	
+	<input type="button" value="Search Item" onclick="location.href='search_item.html'"/>
+	</br>
+</form>
+
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+
+<%
+	String adm = (String)session.getAttribute("signedUser");
+	query = "select Type from CUSTOMER where Customer_id = '" + adm +"'";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	String t=null;
+	while(rs.next()){
+		t = rs.getString(1);
+	}
+	out.print("<h2>"+t+"</h2>");
+	/*
+	if(t.equals("4")){
+		String nextpage = "<form>" +
+				"Filed Login </br> <input type=\"button\" value=\"BACK\" onclick=\"location.href='admin.html'\"/>" +
+				"</form>";
+		out.print(nextpage);
+	}
+	*/
+%>
+
+
+
+</body>
+</html>

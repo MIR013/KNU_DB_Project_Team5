@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> --The Team5's Shopping Mall--</h1>
+
+<form>
+	<input type="button" value="BACK" onclick="location.href='Sign_in.html'"/>
+	</br>
+</form>
+
+
+<%
+String nextpage = "<form>" +
+		"Filed Login </br> <input type=\"button\" value=\"BACK\" onclick=\"location.href='Sign_in.html'\"/>" +
+		"</form>";
+out.print(nextpage);
+
+%>
+
+
+
+</body>
+</html>

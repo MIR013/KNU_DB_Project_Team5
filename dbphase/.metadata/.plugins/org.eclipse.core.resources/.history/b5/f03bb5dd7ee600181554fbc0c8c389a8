@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Welcome to our Mall!</h2>
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+
+<%
+	query="SELECT I.Item_id	FROM ORDERS O, ITEM I WHERE O.Item_id = I.Item_id GROUP BY I.Item_id ORDER BY sum(O.Item_num * I.Relese_unit) DESC LIMIT 3";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+
+
+	
+	
+
+
+
+	conn.commit();
+	conn.close();
+	pstmt.close();
+
+%>
+
+
+</body>
+</html>

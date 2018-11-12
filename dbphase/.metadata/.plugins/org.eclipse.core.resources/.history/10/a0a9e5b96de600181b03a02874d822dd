@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2> Welcome to Team5 </h2>
+	<form>
+		<table>
+			<tr>
+				<td> 1. <a href="Sign_up.html" data-role="button" data-theme="a"> Sign_up </a> </td>
+			</tr>
+			<tr>
+				<td> 2. <input type="button" value="SIGN IN" onclick="location.herf='Sign_in.html'"/> </td>
+			</tr>
+	
+		</table>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2> Welcome to Team5 </h2>
+	<form>
+		<table>
+			<tr>
+				<td> 1. <input type="button" value="SIGN UP" onclick="location.href='Sign_up.html'"/> </td>
+			</tr>
+			<tr>
+				<td> 2. <input type="button" value="SIGN IN" onclick="location.href='Sign_in.html'"/> </td>
+			</tr>
+	
+		</table>
+	</form>
+
+</body>
+</html>
