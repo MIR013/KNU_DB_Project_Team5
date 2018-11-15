@@ -35,15 +35,14 @@ conn.setAutoCommit(false);
 	
 
 	//insert in db
+	
 	String add = request.getParameter("signUpADDRESS");
-	if(add.equalsIgnoreCase("seoul") || add.equalsIgnoreCase("jeju") || add.equalsIgnoreCase("ulleung") || add.equalsIgnoreCase("dok")){
-		c_ship = "lotte";
-	}
-	else if (add.equalsIgnoreCase("gwang")||add.equalsIgnoreCase("busan")||add.equalsIgnoreCase("ulsan")||add.equalsIgnoreCase("incheon")||add.equalsIgnoreCase("deajeon")||add.equalsIgnoreCase("deagu")){
-		c_ship="cj";
-	}
-	else{
-		c_ship="han";
+	query = "SELECT Shippingcomp_name FROM SHIPPINGCOMPANY_LOCATION WHERE Shippingcomp_location = '"+ add +"'";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	
+	if(rs.next()){
+		c_ship = rs.getString(1);
 	}
 	
 	String name;
@@ -120,7 +119,7 @@ conn.setAutoCommit(false);
 	pstmt.close();
 	
 	//next page
-	pageContext.forward("welcome.jsp");
+	pageContext.forward("recommand.jsp");
 	
 %>
 

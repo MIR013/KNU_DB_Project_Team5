@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>search item</h2>
+<form action="search_item_result.jsp" method="POST">
+	<table>
+			<tr>
+				<td>   ITEM ID: <input type="text" name="itemID" value="null"/></td>
+			</tr>
+			<tr>
+				<td> ITEM NAME: <input type="text" name="itemName" value="null"/></td>
+			</tr>
+			<tr>
+				<td>BRAND NAME: <input type="text" name="brandName" value="null"/></td>
+			</tr>
+			<tr>
+				<td><input type="reset" value="reset"/> <input type="submit" value="search"/> </td>
+			</tr>
+			
+	</table>
+	</form>
+	
+	<form action="main_page.jsp" method="POST">
+			<input type="submit" value="BACK"/>
+	</form>
+
+
+</body>
+</html>

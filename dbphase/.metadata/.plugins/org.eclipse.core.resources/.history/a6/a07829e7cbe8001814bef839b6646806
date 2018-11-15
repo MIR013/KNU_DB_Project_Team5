@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>mypage : ordered list</h2>
+
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+
+
+<%
+	String cid = (String)session.getAttribute("signedUser");
+	query = "SELECT Order_no FROM ORDERS WHERE Customer_id = '"+cid+"'";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	while(rs.next()){
+		int ono = rs.getInt(1);
+		String newquery = "SELECT Order_date, Item_id, Item_num FROM ORDERS WHERE Customer_id = '"+cid+"' AND Order_no = "+ono;
+		ResultSet rs2;
+		pstmt = conn.prepareStatement(newquery);
+		rs2 = pstmt.executeQuery();
+		while(rs2.next()){
+			SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+			Date odate = rs.getDate(1);
+			String sodat
+			
+			
+		}
+		
+		
+	}
+
+
+%>
+
+
+<%
+String nextpage = "<form action=\"my_page.html\" method=\"POST\">" +
+			"<input type=\"submit\" value=\"BACK\"/>" +
+			"</form>";
+out.print(nextpage);
+%>
+</body>
+</html>

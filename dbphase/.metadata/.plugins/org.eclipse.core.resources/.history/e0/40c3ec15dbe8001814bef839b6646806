@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>search result</h2>
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+
+<%
+	String iid = request.getParameter("itemID");
+	String iname = request.getParameter("itemName");
+	String bname = request.getParameter("brandName");
+	/*
+	if(bname.isEmpty()){
+		out.print("<h2>"+iid+iname+bname+"</h2>");
+	}
+	*/
+	String a = null;
+	String b = null;
+	String c = null;
+	query = "SELECT * FROM ITEM WHERE ";
+	if(!iid.isEmpty()){
+		query += "Item_id = '";
+		query += iid;
+		query += "'";
+	}
+	
+	
+	
+%>
+
+
+<%
+String nextpage = "<form action=\"main_page.jsp\" method=\"POST\">" +
+			"<input type=\"submit\" value=\"BACK\"/>" +
+			"</form>";
+out.print(nextpage);
+%>
+</body>
+</html>

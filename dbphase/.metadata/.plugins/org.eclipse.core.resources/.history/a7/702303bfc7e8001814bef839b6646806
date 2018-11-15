@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>mypage modify : password</h2>
+
+<form action="my_page_passed.jsp" method="POST">
+	<table>
+	<tr>
+		<td> present password: <input type="text" value=" " name="presentPwd" required/> </td>
+	</tr>
+	<tr>
+		<td> new password:<input type="text" value=" " name="newPwd" required/> </td>
+	</tr>
+	<tr>
+		<td><input type="reset" value="reset"/> <input type="submit" value="submit"/> </td>
+	</tr>
+	</table>
+</form>
+
+
+</body>
+</html>

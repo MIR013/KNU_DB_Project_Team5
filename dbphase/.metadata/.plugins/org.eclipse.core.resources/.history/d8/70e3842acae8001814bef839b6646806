@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2> --mypage-- </h2>
+
+<form>
+	<input type="button" value="Modify personal infomation" onclick="location.href='my_page_personal.html'"/>
+	</br>
+	
+	<input type="button" value="Modify password" onclick="location.href='my_page_passwd.html'"/>
+	</br>
+	
+	<input type="button" value="My shoppingbag" onclick="location.href='my_page_shoppingbag.html'"/>
+	</br>
+	
+	<input type="button" value="My ordered list" onclick="location.href='my_page_order.html'"/>
+	</br>
+</form>
+
+
+
+</body>
+</html>

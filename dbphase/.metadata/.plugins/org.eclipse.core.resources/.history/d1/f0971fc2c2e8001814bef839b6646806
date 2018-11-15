@@ -1,0 +1,122 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+
+<%
+//update
+	String c_ship = null;
+
+	//update in db
+	String x = request.getParameter("modifyADDRESS");
+	query = "SELECT Shippingcomp_name FROM SHIPPINGCOMPANY_LOCATION WHERE Shippingcomp_location = '"+ x+"'";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	
+	if(rs.next()){
+		c_ship = rs.getString(1);
+	}
+	
+	String name;
+	if(request.getParameter("modifyNAME").equals("null")){
+		name = "null";
+	}else
+	{
+		name = "'"+request.getParameter("modifyNAME")+"'";
+	}	
+
+	String phone;
+	if(request.getParameter("modifyPHONE_NUMBER").equals("null")){
+		phone="null";
+	}
+	else{
+		phone = "'"+request.getParameter("modifyPHONE_NUMBER")+ "'";
+	}
+	
+	String job;
+	if(request.getParameter("modifyJOB").equals("null")){
+		job="null";
+	}
+	else{
+		job =  "'"+request.getParameter("modifyJOB")+ "'";
+	}
+	
+	String type;
+	if(request.getParameter("modifyTYPE").equals("null")){
+		type="null";
+	}
+	else{
+		type = "'"+request.getParameter("modifyTYPE")+ "'";
+	}
+	
+	String sex;
+	if(request.getParameter("modifySEX").equals("null")){
+		sex="null";
+	}
+	else{
+		sex = "'"+request.getParameter("modifySEX")+ "'";
+	}
+	
+	query="INSERT INTO CUSTOMER VALUES( "
+			+ "'"+request.getParameter("signUpID")+ "', "
+			+ "'"+request.getParameter("signUpPASSWORD")+ "', "
+			+ name + ","
+			+ "'"+request.getParameter("signUpADDRESS")+ "', "
+			+ phone + ","
+			+job + ","
+			+ type+","
+			+ sex+","
+			+ request.getParameter("signUpAGE")+", "
+			+ "'"+c_ship +"' )";
+
+	
+	
+
+	
+	pstmt = conn.prepareStatement(query);
+	cnt = pstmt.executeUpdate();
+	
+	if(cnt==0){
+		System.out.println("insert success!");
+	}
+	
+	conn.commit();
+
+	
+	
+	conn.close();
+	pstmt.close();
+	
+	//next page
+	//pageContext.forward("recommand.jsp");
+	
+%>
+
+
+
+</body>
+</html>

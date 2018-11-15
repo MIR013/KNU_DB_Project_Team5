@@ -40,7 +40,7 @@ conn.setAutoCommit(false);
 	if(rs.next()){
 		//login
 		session.setAttribute("signedUser", id);
-		pageContext.forward("main.jsp");
+		pageContext.forward("main_page.jsp");
 	}
 	else{
 		//logini fail

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>search item</h2>
+<form action="sign_up.jsp" method="POST">
+	<table>
+			<tr>
+				<td>   ITEM ID: <input type="text" name="signUpID"/></td>
+			</tr>
+			<tr>
+				<td> ITEM NAME: <input type="text" name="signUpPASSWORD"/></td>
+			</tr>
+			<tr>
+				<td>BRAND NAME: <input type="text" name="signUpNAME"/></td>
+			</tr>
+					</table>
+	</form>
+	
+	<form action="main_page.jsp" method="POST">
+			<input type="submit" value="BACK"/>
+	</form>
+
+
+</body>
+</html>
