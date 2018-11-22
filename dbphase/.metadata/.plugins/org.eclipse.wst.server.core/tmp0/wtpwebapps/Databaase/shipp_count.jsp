@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query=null;
+conn.setAutoCommit(false);
+%>
+<%	
+	query = "SELECT * FROM SHIPPINGCOMPANY";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	out.print("<div class=\"container\"><table> <tr><th><h2> [ SHipping Company Count ]</h2></th></tr>");
+	out.print("<tr><td><table border=\"1\" align=\"center\"> ");
+	out.println("<tr><th> Name </th>");
+	out.println("<th> Count </th></tr>");
+	while(rs.next()){
+		out.print("<tr>");
+		out.print("<td>"+rs.getString(1)+"</td>");
+		out.print("<td>"+rs.getString(2)+"</td>");
+		out.print("</tr>");
+	}
+	
+	
+	conn.commit();
+	
+	String nextpage = "</table><tr><td><form action=\"admin_page.html\" method=\"POST\">" +
+			"<input type=\"submit\" value=\"BACK\"/>" +
+			"</form></td></tr>";
+	out.print(nextpage);
+	
+	out.print("</table></div>");
+
+
+
+%>
+</body>
+</html>

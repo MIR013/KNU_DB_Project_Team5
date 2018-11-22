@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	out.print("<h2>" + Sign up is fail! " + "</h2>");
+	
+	String nextpage = "<form action=\"my_page_passwd.html\" method=\"POST\">" +
+			"<input type=\"submit\" value=\"CLOSE\"/>" +
+			"</form>";
+	out.print(nextpage);
+
+%>
+</body>
+</html>

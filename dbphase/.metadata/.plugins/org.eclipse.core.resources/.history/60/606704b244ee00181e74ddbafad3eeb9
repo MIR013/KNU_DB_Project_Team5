@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<h2> --mypage-- </h2>
+
+<form>
+	<div class="container">
+
+	<input type="button" value="Modify personal infomation" onclick="location.href='my_page_personal.html'"/>
+	</br>
+	
+	<input type="button" value="Modify password" onclick="location.href='my_page_passwd.html'"/>
+	</br>
+	
+	<input type="button" value="My shoppingbag" onclick="location.href='my_page_shoppingbag.html'"/>
+	</br>
+	
+	<input type="button" value="My ordered list" onclick="location.href='my_page_order.jsp'"/>
+	</br>
+	</br>
+	<input type="button" value="Back" onclick="location.href='main_page.jsp'"/>
+	</br>
+	</div>
+</form>
+
+
+
+</body>
+</html>

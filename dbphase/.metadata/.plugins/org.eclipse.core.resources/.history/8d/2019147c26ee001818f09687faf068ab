@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Team 5's Shoppping Mall</title>
+</head>
+<body>
+
+	<form>
+	<div class="container">
+		<table>
+			<tr>
+				<th><h2> Welcome to Team5's SHOPPING MALL </h2></th>
+			</tr>
+			<tr>
+				<td>input type="button" value="SIGN UP" onclick="location.href='Sign_up.html'"/> </td>
+			</tr>
+			<tr>
+				<td> 2. <input type="button" value="SIGN IN" onclick="location.href='Sign_in.html'"/> </td>
+			</tr>
+	
+		</table>
+	</div>
+	</form>
+
+</body>
+</html>

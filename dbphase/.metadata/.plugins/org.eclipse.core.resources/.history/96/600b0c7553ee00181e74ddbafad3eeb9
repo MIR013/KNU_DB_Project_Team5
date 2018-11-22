@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<form action="check_sale.jsp" method="POST">
+	<div class="container">
+	<table>
+			<tr>
+				<th><h2> [ Check Sale ] </h2></th>
+			</tr>
+			<tr>
+				<td>TERM: <select name="term"> <option value="total">Total</option>
+													<option value="month">Month</option>
+													<option value="day">Day</option>
+													<option value="null" selected>null</option>
+			</tr>
+			<tr>
+				<td><input type="button" value="Back" onclick="location.href='admin_page.html'"/>
+				 <input type="submit" value="submit"/> </td>
+				
+			</tr>
+
+
+
+		
+		</table>
+		</div>
+	</form>
+
+</body>
+</html>

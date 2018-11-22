@@ -6,10 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 </head>
 <body>
 
-<h2>search small categories</h2>
 <%
 String serverIP = "localhost";
 String dbName = "phase2";
@@ -33,11 +33,10 @@ conn.setAutoCommit(false);
 	String mcat = request.getParameter("MiddleCat");
 	query = "SELECT distinct Small_category FROM CATEGORY WHERE Large_category = '" +lcat+"' AND Middle_category = '"+ mcat + "'";
 	//out.print("<h2>"+query+"</h2>");
-	
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
-	out.print("<form action = search_category_result.jsp method = 'POST'> <table>");
-	
+	out.print("<form action = search_category_result.jsp method = 'POST'><div class=\"container\"> <table>");
+	out.print("<tr><th><h2> [ Search Small Categories ]</h2></th></tr>");
 	//large check box
 	out.print("	<tr> <td>Middle Category : <select name=\"SmallCat\">"); 
 	while(rs.next()){
@@ -53,16 +52,10 @@ conn.setAutoCommit(false);
 	out.print("<input type=\"hidden\" name = \"largecat\" value = "+lcat+" />");
 	out.print("<input type=\"hidden\" name = \"middlecat\" value = "+mcat+" />");
 	
-	out.print("<tr>	<td><input type=\"reset\" value=\"reset\"/> <input type=\"submit\" value=\"search\"/> </td> </tr>");
+	out.print("<tr>	<td><input type=\"button\" value=\"BACK\" onclick=\"location.href='search_category_large.jsp'\"/>  <input type=\"submit\" value=\"search\"/> </td> </tr>");
 	out.print("</table></form>");
 	
 %>
 
-<%
-String nextpage = "<form action=\"main_page.jsp\" method=\"POST\">" +
-			"<input type=\"submit\" value=\"BACK\"/>" +
-			"</form>";
-out.print(nextpage);
-%>
 </body>
 </html>

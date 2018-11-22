@@ -5,21 +5,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 <title>Insert title here</title>
 </head>
 <body>
-<h1> --The Team5's Shopping Mall--</h1>
 
 <form>
-	<input type="button" value="My Page" onclick="location.href='my_page.html'"/>
-	</br>
-	
-	<input type="button" value="Search Category" onclick="location.href='search_category_large.jsp'"/>
-	</br>
-	
-	<input type="button" value="Search Item" onclick="location.href='search_item.html'"/>
-	</br>
-</form>
+	<div class="container">
+		<table>
+		<tr>
+				<th><h2> [ The Team5's Shopping Mall ]</h2></th>
+		</tr>
+		<tr>
+			<td><input type="button" value="My Page" onclick="location.href='my_page.html'"/></td>
+		</tr>
+		<tr>
+		<td><input type="button" value="Search Category" onclick="location.href='search_category_large.jsp'"/></td>
+		</tr>
+		<tr>
+		<td><input type="button" value="Search Item" onclick="location.href='search_item.html'"/></td>
+		</tr>
+
 
 <%
 String serverIP = "localhost";
@@ -50,20 +56,19 @@ conn.setAutoCommit(false);
 		t = rs.getString(1);
 	}
 	if(t != null && t.equals("4")){
-		String nextpage = "<form>" +
-				"<input type=\"button\" value=\"Admin Page\" onclick=\"location.href='admin_page.html'\"/>" +
-				"</form>";
+		String nextpage = "<tr><td><input type=\"button\" value=\"Admin Page\" onclick=\"location.href='admin_page.html'\"/></td></tr>";
 		out.print(nextpage);
 	}
 	
 %>
 <%
 out.print("</br>");
-String nextpage = "<form action=\"log_out.jsp\" method=\"POST\">" +
-			"<input type=\"submit\" value=\"LOGOUT\"/>" +
-			"</form>";
+String nextpage = "<tr><td><input type=\"button\" value=\"LOGOUT\" onclick=\"location.href='log_out.jsp'\"/></td></tr>";
 out.print(nextpage);
-%>
 
+%>
+		</table>
+	</div>
+</form>
 </body>
 </html>

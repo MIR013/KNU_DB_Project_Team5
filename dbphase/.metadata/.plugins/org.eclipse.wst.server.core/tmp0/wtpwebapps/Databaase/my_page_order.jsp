@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h2>mypage : ordered list</h2>
 
 <%
 String serverIP = "localhost";
@@ -35,7 +35,9 @@ conn.setAutoCommit(false);
 	query = "SELECT Order_no FROM ORDERS WHERE Customer_id = '"+cid+"'";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
-	out.print("<table border=\"1\">");
+	out.print("<div class=\"container\"><table> <tr><th><h2> [ Ordered List ] </h2></th></tr>");
+
+	out.print("<tr><td><table border=\"1\" align=\"center\"> ");
 	
 	int before = -1;
 	while(rs.next()){
@@ -82,6 +84,7 @@ String nextpage = "<form action=\"my_page.html\" method=\"POST\">" +
 			"<input type=\"submit\" value=\"BACK\"/>" +
 			"</form>";
 out.print(nextpage);
+out.print("</table></div>");
 %>
 </body>
 </html>

@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 </head>
 <body>
-<h2>mypage modify : personal information</h2>
 
 	<form action="my_page_personal.jsp" method="POST">
+	<div class="container">
 	<table>
+			<tr>
+				<th><h2> [ My Page Modify : Personal Information ] </h2></th>
+			</tr>
 			<tr>
 				<td>NAME: <input type="text" name="modifyNAME" value="null"/></td>
 			</tr>
@@ -32,19 +36,24 @@
 				<td>SEX: <select name="modifySEX"> <option value="f">F</option>
 													<option value="m">M</option>
 													<option value="null" selected>null</option>
-													</select> #Female:F Male:M </td></td>
+													</select> #Female:F Male:M </td>
 			</tr>
 			<tr>
 				<td>AGE: <input type="text" name="modifyAGE" value="null"/></td>
 			</tr>
 			<tr>
-				<td><input type="reset" value="reset"/> <input type="submit" value="submit"/> </td>
+				<td>
+				<input type="button" value="BACK" onclick="location.href='my_page.html'"/>
+				
+				<input type="submit" value="submit"/> 
+				</td>
 			</tr>
 			<tr>
 				<td> * is required </td>
 			</tr>
-
+		
 		</table>
+		</div>
 	</form>
 
 </body>

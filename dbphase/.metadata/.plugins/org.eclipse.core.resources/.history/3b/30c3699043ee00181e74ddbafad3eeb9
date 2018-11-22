@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<h1> sign in</h1>
+<form action="sign_in.jsp" method="POST">
+	<div class="container">
+	<table>
+			<tr>
+				<td>*ID: <input type="text" name="signInID" required/></td>
+			</tr>
+			<tr>
+				<td>*PASSWORD: <input type="text" name="signInPASSWORD" required/></td>
+			</tr>
+			<tr>
+				<td><input type="reset" value="reset"/> <input type="submit" value="submit"/> </td>
+			</tr>
+	</table>
+	</div>
+</form>
+
+
+</body>
+</html>

@@ -4,17 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 <title>Insert title here</title>
 </head>
 <body>
-<h2>log out is successed</h2>
-<%
-session.invalidate();
 
-String nextpage = "<form action=\"main.html\" method=\"POST\">" +
-			"<input type=\"submit\" value=\"CLOSE\"/>" +
-			"</form>";
-out.print(nextpage);
+<%
+	session.invalidate();
+
+	out.print("<div class=\"container\"><table><tr><th><h2>" + " log out is successed " + "</h2></th></tr>");
+	
+	String nextpage = "<tr><td><form action=\"main.html\" method=\"POST\">" +
+			"<input type=\"submit\" value=\"CLOSE\"/></td></tr>" +
+			"</form></table></div>";
+	out.print(nextpage);
+
 %>
 </body>
 </html>

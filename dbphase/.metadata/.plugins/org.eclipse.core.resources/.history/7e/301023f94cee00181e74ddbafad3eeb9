@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<form action="update_stock.jsp" method="POST">
+	<div class="container">
+	<table>
+			<tr>
+				<th><h2> [ Update Stock ] </h2></th>
+			</tr>
+			<tr>
+				<td>   ITEM ID: <input type="text" name="itemID"/></td>
+			</tr>
+			<tr>
+				<td> ITEM NUMBER: <input type="text" name="itemName"/></td>
+			</tr>
+			<tr>
+				<td>BRAND NAME: <input type="text" name="brandName"/></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="BACK" onclick="location.href='main_page.jsp'"/>
+				 <input type="submit" value="search"/> </td>
+			</tr>
+			
+	</table>
+	</div>
+</form>
+</body>
+</html>

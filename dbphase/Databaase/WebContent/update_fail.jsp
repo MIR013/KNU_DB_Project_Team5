@@ -3,17 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
 <%
 	String adm = (String)session.getAttribute("signedUser");
-	out.print("<h2>" + adm + "'s Modifying is fail! " + "</h2>");
+
+	out.print("<div class=\"container\"><table><tr><th><h2>" + adm + "'s Modifying is fail! " + "</h2></th></tr>");
 	
-	String nextpage = "<form action=\"my_page_passwd.html\" method=\"POST\">" +
-			"<input type=\"submit\" value=\"CLOSE\"/>" +
-			"</form>";
+	String nextpage = "<tr><td><form action=\"my_page_passwd.html\" method=\"POST\">" +
+			"<input type=\"submit\" value=\"CLOSE\"/></td></tr>" +
+			"</form></table></div>";
 	out.print(nextpage);
 
 %>

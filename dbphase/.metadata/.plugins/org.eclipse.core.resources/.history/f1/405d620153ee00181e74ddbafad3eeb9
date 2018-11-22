@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<form action="check_sale.jsp" method="POST">
+	<div class="container">
+	<table>
+			<tr>
+				<th><h2> [ Sign Up ] </h2></th>
+			</tr>
+			<tr>
+				<td>*ID: <input type="text" name="signUpID" required/>
+					    *PASSWORD: <input type="text" name="signUpPASSWORD" required/></td>
+			</tr>
+			<tr>
+				<td>NAME: <input type="text" name="signUpNAME"/>
+				*ADDRESS: <input type="text" name="signUpADDRESS" required/></td>
+			</tr>
+			<tr>
+				<td>*PHONE_NUMBER: <input type="text" name="signUpPHONE_NUMBER" required/> input type:00000000000 </td>
+			</tr>
+			<tr>
+				<td>JOB: <input type="text" name="signUpJOB"/>
+				AGE: <input type="text" name="signUpAGE"/></td>
+			</tr>
+			<tr>
+				<td>TYPE: <select name="signUpTYPE"> <option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="null" selected>null</option>
+													</select> #smallseller:1 bigseller:2 etc:3 </td>
+			</tr>
+			<tr>
+				<td>SEX: <select name="signUpSEX"> <option value="f">F</option>
+													<option value="m">M</option>
+													<option value="null" selected>null</option>
+													</select> #Female:F Male:M </td></td>
+			</tr>
+			<tr>
+				<td><input type="reset" value="reset"/> <input type="submit" value="submit"/> </td>
+			</tr>
+			<tr>
+				<td> * is required </td>
+			</tr>
+
+
+		
+		</table>
+		</div>
+	</form>
+
+</body>
+</html>

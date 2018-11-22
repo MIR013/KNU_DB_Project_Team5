@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+
+<form>
+	<div class="container">
+	<table>
+	<tr>
+		<th><h2> [ Admin ] </h2></th>
+	</tr>
+	<tr><td>
+	<input type="button" value="Update Stock" onclick="location.href='my_page_personal.html'"/>
+	</td></tr>
+	<tr><td>
+	<input type="button" value="Checking Stock has run Short" onclick="location.href='my_page_passwd.html'"/>
+	</td></tr>
+	<tr><td>
+	<input type="button" value="My shoppingbag" onclick="location.href='my_page_shoppingbag.html'"/>
+	</td></tr>
+	<tr><td>
+	<input type="button" value="My ordered list" onclick="location.href='my_page_order.jsp'"/>
+	</td></tr>
+	<tr><td>
+	<input type="button" value="Back" onclick="location.href='main_page.jsp'"/>
+	</td></tr>
+	
+	</table>
+	</div>
+</form>
+
+
+</body>
+</html>

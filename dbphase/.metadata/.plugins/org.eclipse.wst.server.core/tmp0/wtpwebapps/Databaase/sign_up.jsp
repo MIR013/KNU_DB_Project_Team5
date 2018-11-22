@@ -28,6 +28,21 @@ conn.setAutoCommit(false);
 %>
 
 <%
+//check Customer_id Redundancy
+	query = "select * from CUSTOMER where Customer_id = '" + request.getParameter("signUpID") +"'"; 
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	if(rs.next()){
+		//id exist
+		pageContext.forward("signup_fail.jsp");
+	}
+	//else go to sing up 
+	
+%>
+
+
+
+<%
 //insert
 	String c_ship = null;
 
@@ -46,15 +61,16 @@ conn.setAutoCommit(false);
 	}
 	
 	String name;
-	if(request.getParameter("signUpNAME").equals("null")){
+	if(request.getParameter("signUpNAME").isEmpty()){
 		name = "null";
+		
 	}else
 	{
 		name = "'"+request.getParameter("signUpNAME")+"'";
 	}	
 
 	String phone;
-	if(request.getParameter("signUpPHONE_NUMBER").equals("null")){
+	if(request.getParameter("signUpPHONE_NUMBER").isEmpty()){
 		phone="null";
 	}
 	else{
@@ -62,7 +78,7 @@ conn.setAutoCommit(false);
 	}
 	
 	String job;
-	if(request.getParameter("signUpJOB").equals("null")){
+	if(request.getParameter("signUpJOB").isEmpty()){
 		job="null";
 	}
 	else{
@@ -84,6 +100,13 @@ conn.setAutoCommit(false);
 	else{
 		sex = "'"+request.getParameter("signUpSEX")+ "'";
 	}
+	int age;
+	if(request.getParameter("signUpAGE").isEmpty()){
+		age=0;
+	}
+	else{
+		age =  Integer.parseInt(request.getParameter("signUpAGE"));
+	}
 	
 	query="INSERT INTO CUSTOMER VALUES( "
 			+ "'"+request.getParameter("signUpID")+ "', "
@@ -94,7 +117,7 @@ conn.setAutoCommit(false);
 			+job + ","
 			+ type+","
 			+ sex+","
-			+ request.getParameter("signUpAGE")+", "
+			+ age+", "
 			+ "'"+c_ship +"' )";
 	
 	//out.print("<h6>"+ query +"</h6>");
@@ -109,6 +132,20 @@ conn.setAutoCommit(false);
 	
 	conn.commit();
 
+
+	query = "INSERT INTO SHOPPINGBAG VALUES ('"+request.getParameter("signUpID")+"', "+request.getParameter("signUpID")+")";
+	pstmt = conn.prepareStatement(query);
+	cnt = pstmt.executeUpdate();
+	
+	if(cnt==0){
+		System.out.println("insert success!");
+	}
+	
+	conn.commit();
+	
+	
+	
+	
 	
 	//log in 
 	String id = request.getParameter("signUpID");
@@ -117,7 +154,7 @@ conn.setAutoCommit(false);
 	
 	conn.close();
 	pstmt.close();
-	
+
 	//next page
 	pageContext.forward("recommand.jsp");
 	

@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 </head>
 <body>
-<h2>search result</h2>
 <%
 String serverIP = "localhost";
 String dbName = "phase2";
@@ -44,7 +44,7 @@ conn.setAutoCommit(false);
 	}
 	
 	if(!iid.isEmpty()){
-		query += " Itme_id = '"+iid+"' ";
+		query += " Item_id = '"+iid+"' ";
 		if(!bname.isEmpty() || !iname.isEmpty()){
 			query += " AND ";
 		}
@@ -62,13 +62,14 @@ conn.setAutoCommit(false);
 	
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
-	
-	out.print("<table border=\"1\">");
+	out.print("<div class=\"container\"><table> <tr><th><h2> [ Search Result ]</h2></th></tr>");
+	out.print("<tr><td><table border=\"1\" align=\"center\"> ");
 	rsmd = rs.getMetaData();
 	cnt = rsmd.getColumnCount();
 	for(int i=1;i<=cnt;i++){
 		out.println("<th>"+rsmd.getColumnName(i)+"</th>");
 	}
+	out.println("<th>"+ "</th>");
 	while(rs.next()){
 		out.print("<tr>");
 		String iiid = rs.getString(1);
@@ -83,7 +84,7 @@ conn.setAutoCommit(false);
 		out.print("</tr>");
 	}
 	out.print("</table>");
-	
+
 	
 %>
 
@@ -93,6 +94,8 @@ String nextpage = "<form action=\"main_page.jsp\" method=\"POST\">" +
 			"<input type=\"submit\" value=\"BACK\"/>" +
 			"</form>";
 out.print(nextpage);
+
+out.print("</table></div>");
 %>
 </body>
 </html>
