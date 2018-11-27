@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*,java.util.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+<%
+	String cid = (String)session.getAttribute("signedUser");
+	//do purchase
+	//stock lack-fail
+	query = "select a.Item_id,b.Item_num from ITEM a,INCLUDE b where a.Item_id = b.Item_id and b.Customer_id = '"+cid+"' and a.Keep_num < b.Item_num * a.Relese_unit";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	if(rs.next()){
+		pageContext.forward("purchase_fail.jsp");
+	}
+	else{
+
+%>
+<%
+	//insert orders, delete include, update item keep_num, update shippingcomp - success
+		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+		java.util.Date currentTime = new java.util.Date ();
+		String mTime = mSimpleDateFormat.format ( currentTime );
+		System.out.println ( mTime );
+		
+		//get next order_no
+		int ono=0;
+		query = "select Order_no from ORDERS order by Order_no DESC limit 1 ";
+		pstmt = conn.prepareStatement(query);
+		rs = pstmt.executeQuery();
+		if(rs.next()){
+			ono = Integer.parseInt(rs.getString(1))+1;
+		}
+		//insert orders
+		query = "select * from INCLUDE where Customer_id = '"+cid+"'";
+		pstmt = conn.prepareStatement(query);
+		rs = pstmt.executeQuery();
+		while(rs.next()){
+			
+			String query2 = "insert into ORDERS values ("+ono+", to_date('"+mTime+"','yyyy-mm-dd'), '"+cid+"', '"+
+					rs.getString(3)+"', "+rs.getString(4)+")";
+			pstmt = conn.prepareStatement(query2);
+			cnt = pstmt.executeUpdate();
+			
+			//update item
+			int snum = rs.getInt(4);
+			String query3 = "update ITEM set Keep_num = Keep_num - "+snum+"*Relese_unit set where Item_id = '"+rs.getShort(3)+"'";
+			pstmt = conn.prepareStatement(query3);
+			cnt = pstmt.executeUpdate();
+		}
+		
+		//delete include
+		query = "delete from INCLUDE where Customer_id = '"+cid+"'";
+		pstmt = conn.prepareStatement(query);
+		cnt = pstmt.executeUpdate();
+		
+		//update shipping
+		query = "select C_shipname from CUSTOMER where Customer_id = '"+cid+"'";
+		
+		//query = "update SHIPPINGCOMPCOMPANY set "
+
+	}
+%>
+
+
+</body>
+</html>

@@ -58,7 +58,7 @@ conn.setAutoCommit(false);
 		<%
 			out.print("<input type=\"hidden\" name = \"itemID\" value ="+ iid+" />");
 		%>
-			Value: <input type="text" name = "itemNum" required/>
+			Value set: <input type="text" name = "itemNum" required/>
 			<input type="submit" value="Add Shoppingbag" name="submit"/>
 		</form>
 	</td>

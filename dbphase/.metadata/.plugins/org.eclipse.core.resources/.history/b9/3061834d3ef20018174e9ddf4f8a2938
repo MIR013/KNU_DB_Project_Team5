@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
+<title>Insert title here</title>
+</head>
+<body>
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+
+
+<%
+	String cid = (String)session.getAttribute("signedUser");
+	query = "SELECT Item_id,Item_num FROM INCLUDE WHERE Customer_id = '"+cid+"'";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	out.print("<div class=\"container\"><table> <tr><th><h2> [ Shoppingbag Item List ] </h2></th></tr>");
+
+	out.print("<tr><td><table border=\"1\" align=\"center\"> ");
+	
+	int before = -1;
+	while(rs.next()){
+		out.println("<tr><th> Item_id </th>");
+		out.println("<th> Item_num </th></tr>");
+		out.print("<tr><td>"+rs.getString(1)+"</td><td>"+rs.getString(2)+"</td></tr>");
+		
+		
+	}
+
+%>
+
+<%
+String nextpage = "<tr><td><form action=\"my_page.html\" method=\"POST\">" +
+			"<input type=\"submit\" value=\"BACK\"/>" +
+			"</form></td></tr>";
+out.print(nextpage);
+out.print("</table></div>");
+%>
+
+
+
+</body>
+</html>

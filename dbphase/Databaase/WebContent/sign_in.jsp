@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel='stylesheet' type='text/css' href='mystyle.css'>
 <title>Insert title here</title>
 </head>
 <body>
@@ -45,7 +46,7 @@ conn.setAutoCommit(false);
 	else{
 		//logini fail
 		String nextpage = "<form>" +
-				"Filed Login </br> <input type=\"button\" value=\"BACK\" onclick=\"location.href='Sign_in.html'\"/>" +
+				"<dir class=\"container\"><table><tr><td> <h2>Failed Login </h2><input type=\"button\" value=\"BACK\" onclick=\"location.href='Sign_in.html'\"/></td></tr></table></dir>" +
 				"</form>";
 		out.print(nextpage);
 	}
