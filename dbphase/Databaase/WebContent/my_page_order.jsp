@@ -38,7 +38,8 @@ conn.setAutoCommit(false);
 	out.print("<div class=\"container\"><table> <tr><th><h2> [ Ordered List ] </h2></th></tr>");
 
 	out.print("<tr><td><table border=\"1\" align=\"center\"> ");
-	
+
+	System.out.print(conn.getTransactionIsolation());
 	int before = -1;
 	while(rs.next()){
 		int ono = rs.getInt(1);

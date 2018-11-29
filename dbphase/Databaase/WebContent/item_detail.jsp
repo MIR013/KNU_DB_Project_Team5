@@ -32,7 +32,7 @@ conn.setAutoCommit(false);
 	query = "SELECT * FROM ITEM WHERE Item_id = '"+iid+"'";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
-	out.print("<div class=\"container\"><table> <tr><th><h2> [ SHipping Company Count ]</h2></th></tr>");
+	out.print("<div class=\"container\"><table> <tr><th><h2> [ Item detail ]</h2></th></tr>");
 	out.print("<tr><td><table border=\"1\" align=\"center\"> ");
 	rsmd = rs.getMetaData();
 	cnt = rsmd.getColumnCount();
@@ -67,7 +67,7 @@ conn.setAutoCommit(false);
 	
 <%
 	
-	String nextpage = "<tr><td><form action=\"main_page.html\" method=\"POST\">" +
+	String nextpage = "<tr><td><form action=\"main_page.jsp\" method=\"POST\">" +
 			"<input type=\"submit\" value=\"BACK\"/>" +
 			"</form></td></tr>";
 	out.print(nextpage);

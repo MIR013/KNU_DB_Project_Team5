@@ -40,8 +40,26 @@ conn.setAutoCommit(false);
 	rs = pstmt.executeQuery();
 	if(rs.next()){
 		//login
-		session.setAttribute("signedUser", id);
-		pageContext.forward("main_page.jsp");
+		
+		//check double login
+		System.out.print(session.getAttribute("signedUser"));
+		if(session.getAttribute("signedUser")==null){
+			//no login user
+			session.setAttribute("signedUser", id);
+			pageContext.forward("main_page.jsp");
+		}
+		else if(session.getAttribute("signedUser").equals(id)){
+			//same as myself
+			pageContext.forward("main_page.jsp");
+		}
+		else{
+			//exist login user
+			String nextpage = "<form>" +
+					"<dir class=\"container\"><table><tr><td> <h2>User already connected."+"</br>"+"Sign out and Sign in again. </h2><input type=\"button\" value=\"BACK\" onclick=\"location.href='Sign_in.html'\"/></td></tr></table></dir>" +
+					"</form>";
+			out.print(nextpage);
+		}
+		
 	}
 	else{
 		//logini fail

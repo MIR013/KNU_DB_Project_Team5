@@ -55,7 +55,17 @@ conn.setAutoCommit(false);
 		//out.print("<h2>"+query+"</h2>");
 	}else{
 		//insert
-		query = "INSERT INTO INCLUDE VALUES ("+cid+", '"+cid+"', '"+iid+"', "+inum+")";
+		
+		query = "SELECT Shoppingbag_no FROM SHOPPINGBAG WHERE Customer_id = '"+cid+"'";
+		pstmt = conn.prepareStatement(query);
+		rs = pstmt.executeQuery();
+		int sno=0;
+		if(rs.next()){
+			sno = Integer.parseInt(rs.getString(1));
+		}
+		
+		
+		query = "INSERT INTO INCLUDE VALUES ("+ sno +", '"+cid+"', '"+iid+"', "+inum+")";
 		
 		pstmt = conn.prepareStatement(query);
 		cnt = pstmt.executeUpdate();

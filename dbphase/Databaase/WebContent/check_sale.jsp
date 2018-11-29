@@ -40,36 +40,69 @@ GROUP BY duration
 	String term = request.getParameter("term");
 	int resultSum=0;
 	if(term.equals("total")){
-		query = "SELECT 	I.Item_id, SUM(I.Relese_unit*I.Standard_price*O.Item_num) FROM	ITEM I,ORDERS O WHERE	I.Item_id = O.Item_id GROUP BY I.Item_id";			
+		query = "SELECT 	I.Item_id, SUM(I.Relese_unit*I.Standard_price*O.Item_num) FROM	ITEM I,ORDERS O WHERE	I.Item_id = O.Item_id GROUP BY I.Item_id";	
+		
+		pstmt = conn.prepareStatement(query);
+		rs = pstmt.executeQuery();
+		out.print("<div class=\"container\"><table> <tr><th><h2> [ Result ]</h2></th></tr>");
+		out.print("<tr><td><table border=\"1\" align=\"center\"> ");
+		out.println("<tr><th> Item ID </th>");
+		out.println("<th> Total </th></tr>");
+		while(rs.next()){
+			out.print("<tr>");
+			out.print("<td>"+rs.getString(1)+"</td>");
+			resultSum += Integer.parseInt(rs.getString(2));
+			out.print("<td>"+rs.getString(2)+"</td>");
+			out.print("</tr>");
+		}
+		out.print("<tr><td>Result Sum</td>");
+		out.print("<td>"+resultSum+"</td></tr>");
+		
 	}
 	else if(term.equals("month")){
 		query = "SELECT a.duration,SUM(a.titem)	FROM( "+
 				" SELECT	DATE_FORMAT(O.Order_date,'%Y-%m') as duration, I.Item_id, SUM(I.Relese_unit*I.Standard_price*O.Item_num) as titem "+
 				" FROM	ITEM I,ORDERS O	WHERE	I.Item_id = O.Item_id GROUP BY duration, I.Item_id) as a GROUP BY duration"	;
+		pstmt = conn.prepareStatement(query);
+		rs = pstmt.executeQuery();
+		out.print("<div class=\"container\"><table> <tr><th><h2> [ Result ]</h2></th></tr>");
+		out.print("<tr><td><table border=\"1\" align=\"center\"> ");
+		out.println("<tr><th> Duration </th>");
+		out.println("<th> Total </th></tr>");
+		while(rs.next()){
+			out.print("<tr>");
+			out.print("<td>"+rs.getString(1)+"</td>");
+			resultSum += Integer.parseInt(rs.getString(2));
+			out.print("<td>"+rs.getString(2)+"</td>");
+			out.print("</tr>");
+		}
+		out.print("<tr><td>Result Sum</td>");
+		out.print("<td>"+resultSum+"</td></tr>");
 	}
 	else{
 		//day
 		query = "SELECT a.duration,SUM(a.titem)	FROM( "+
 				" SELECT	DATE_FORMAT(O.Order_date,'%Y-%m-%d') as duration, I.Item_id, SUM(I.Relese_unit*I.Standard_price*O.Item_num) as titem "+
 				" FROM	ITEM I,ORDERS O	WHERE	I.Item_id = O.Item_id GROUP BY duration, I.Item_id) as a GROUP BY duration"	;
+		pstmt = conn.prepareStatement(query);
+		rs = pstmt.executeQuery();
+		out.print("<div class=\"container\"><table> <tr><th><h2> [ Result ]</h2></th></tr>");
+		out.print("<tr><td><table border=\"1\" align=\"center\"> ");
+		out.println("<tr><th> Duration </th>");
+		out.println("<th> Total </th></tr>");
+		while(rs.next()){
+			out.print("<tr>");
+			out.print("<td>"+rs.getString(1)+"</td>");
+			resultSum += Integer.parseInt(rs.getString(2));
+			out.print("<td>"+rs.getString(2)+"</td>");
+			out.print("</tr>");
+		}
+		out.print("<tr><td>Result Sum</td>");
+		out.print("<td>"+resultSum+"</td></tr>");
 		
 	}
 	
-	pstmt = conn.prepareStatement(query);
-	rs = pstmt.executeQuery();
-	out.print("<div class=\"container\"><table> <tr><th><h2> [ Result ]</h2></th></tr>");
-	out.print("<tr><td><table border=\"1\" align=\"center\"> ");
-	out.println("<tr><th> Item ID </th>");
-	out.println("<th> Total </th></tr>");
-	while(rs.next()){
-		out.print("<tr>");
-		out.print("<td>"+rs.getString(1)+"</td>");
-		resultSum += Integer.parseInt(rs.getString(2));
-		out.print("<td>"+rs.getString(2)+"</td>");
-		out.print("</tr>");
-	}
-	out.print("<tr><td>Result Sum</td>");
-	out.print("<td>"+resultSum+"</td></tr>");
+
 	
 	
 	conn.commit();

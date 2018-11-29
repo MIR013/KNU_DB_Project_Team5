@@ -1,0 +1,175 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.text.*,java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sign up success</title>
+</head>
+<body>
+<%
+String serverIP = "localhost";
+String dbName = "phase2";
+String portNum = "3306";
+String url = "jdbc:mysql://" + serverIP + ":" + portNum + "/" + dbName;
+String user = "knu";
+String pass = "comp322";
+Connection conn = null;
+
+Class.forName("com.mysql.jdbc.Driver");
+conn = DriverManager.getConnection(url,user,pass);
+PreparedStatement pstmt;
+ResultSet rs;
+ResultSetMetaData rsmd;
+int cnt;
+String query;
+conn.setAutoCommit(false);
+%>
+
+<%
+//check Customer_id Redundancy
+	query = "select * from CUSTOMER where Customer_id = '" + request.getParameter("signUpID") +"'"; 
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	if(rs.next()){
+		//id exist
+		pageContext.forward("signup_fail.jsp");
+	}
+	//else go to sing up 
+	
+%>
+
+
+
+<%
+//insert
+	
+	String c_ship = null;
+
+	//id redundancy check
+	
+
+	//insert in db
+	
+	String add = request.getParameter("signUpADDRESS");
+	query = "SELECT Shippingcomp_name FROM SHIPPINGCOMPANY_LOCATION WHERE Shippingcomp_location = '"+ add +"'";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	
+	if(rs.next()){
+		c_ship = rs.getString(1);
+	}
+	
+	String name;
+	if(request.getParameter("signUpNAME").isEmpty()){
+		name = "null";
+		
+	}else
+	{
+		name = "'"+request.getParameter("signUpNAME")+"'";
+	}	
+
+	String phone;
+	if(request.getParameter("signUpPHONE_NUMBER").isEmpty()){
+		phone="null";
+	}
+	else{
+		phone = "'"+request.getParameter("signUpPHONE_NUMBER")+ "'";
+	}
+	
+	String job;
+	if(request.getParameter("signUpJOB").isEmpty()){
+		job="null";
+	}
+	else{
+		job =  "'"+request.getParameter("signUpJOB")+ "'";
+	}
+	
+	String type;
+	if(request.getParameter("signUpTYPE").equals("null")){
+		type="null";
+	}
+	else{
+		type = "'"+request.getParameter("signUpTYPE")+ "'";
+	}
+	
+	String sex;
+	if(request.getParameter("signUpSEX").equals("null")){
+		sex="null";
+	}
+	else{
+		sex = "'"+request.getParameter("signUpSEX")+ "'";
+	}
+	int age;
+	if(request.getParameter("signUpAGE").isEmpty()){
+		age=0;
+	}
+	else{
+		age =  Integer.parseInt(request.getParameter("signUpAGE"));
+	}
+	
+	query="INSERT INTO CUSTOMER VALUES( "
+			+ "'"+request.getParameter("signUpID")+ "', "
+			+ "'"+request.getParameter("signUpPASSWORD")+ "', "
+			+ name + ","
+			+ "'"+request.getParameter("signUpADDRESS")+ "', "
+			+ phone + ","
+			+job + ","
+			+ type+","
+			+ sex+","
+			+ age+", "
+			+ "'"+c_ship +"' )";
+	
+	//out.print("<h6>"+ query +"</h6>");
+
+	
+	pstmt = conn.prepareStatement(query);
+	cnt = pstmt.executeUpdate();
+	
+	if(cnt==0){
+		System.out.println("insert success!");
+	}
+	
+	int a=0;
+	query = "SELECT Shoppingbag_no FROM SHOPPINGBAG ORDER BY Shoppingbag_no DESC LIMIT 1";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	
+	if(rs.next()){
+		a = Integer.parseInt(rs.getString(1))+1;
+	}
+	
+	
+	query = "INSERT INTO SHOPPINGBAG VALUES ('"+request.getParameter("signUpID")+"', "+a+")";
+	pstmt = conn.prepareStatement(query);
+	cnt = pstmt.executeUpdate();
+	
+	if(cnt==0){
+		System.out.println("insert success!");
+	}
+	
+	conn.commit();
+	
+	
+	
+	
+	//log in 
+	String id = request.getParameter("signUpID");
+	String pwd = request.getParameter("signUpPASSWORD");
+	session.setAttribute("signedUser", id);
+	
+	conn.close();
+	pstmt.close();
+
+	//next page
+	pageContext.forward("recommand.jsp");
+	
+	
+	out.print("<h2>"+a+"</h2>");
+%>
+
+
+
+</body>
+</html>

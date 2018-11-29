@@ -44,6 +44,7 @@ conn.setAutoCommit(false);
 
 <%
 //insert
+	
 	String c_ship = null;
 
 	//id redundancy check
@@ -58,6 +59,10 @@ conn.setAutoCommit(false);
 	
 	if(rs.next()){
 		c_ship = rs.getString(1);
+		
+	}
+	else{
+		c_ship = "han";
 	}
 	
 	String name;
@@ -130,10 +135,17 @@ conn.setAutoCommit(false);
 		System.out.println("insert success!");
 	}
 	
-	conn.commit();
-
-
-	query = "INSERT INTO SHOPPINGBAG VALUES ('"+request.getParameter("signUpID")+"', "+request.getParameter("signUpID")+")";
+	int a=0;
+	query = "SELECT Shoppingbag_no FROM SHOPPINGBAG ORDER BY Shoppingbag_no DESC LIMIT 1";
+	pstmt = conn.prepareStatement(query);
+	rs = pstmt.executeQuery();
+	
+	if(rs.next()){
+		a = Integer.parseInt(rs.getString(1))+1;
+	}
+	
+	
+	query = "INSERT INTO SHOPPINGBAG VALUES ('"+request.getParameter("signUpID")+"', "+a+")";
 	pstmt = conn.prepareStatement(query);
 	cnt = pstmt.executeUpdate();
 	
@@ -142,7 +154,6 @@ conn.setAutoCommit(false);
 	}
 	
 	conn.commit();
-	
 	
 	
 	
@@ -158,6 +169,8 @@ conn.setAutoCommit(false);
 	//next page
 	pageContext.forward("recommand.jsp");
 	
+	
+	out.print("<h2>"+a+"</h2>");
 %>
 
 
