@@ -69,7 +69,7 @@ conn.setAutoCommit(false);
 			System.out.print(conn.getTransactionIsolation());
 			// ORDERS INCLUDE ITEM SHIPPINGCOMPANY ->lock
 			//default public static final int  TRANSACTION_REPEATABLE_READ = 4
-			//conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);//8
+			conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);//8
 
 
 			

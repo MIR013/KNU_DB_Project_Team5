@@ -40,6 +40,7 @@ conn.setAutoCommit(false);
 	query = "select * from INCLUDE where Customer_id = '"+cid+"'";
 	pstmt = conn.prepareStatement(query);
 	rs = pstmt.executeQuery();
+	System.out.println(cid+": "+query);
 	if(!rs.next()){
 		pageContext.forward("purchase_empty.jsp");
 	}
@@ -55,6 +56,7 @@ conn.setAutoCommit(false);
 		query = "select a.Item_id,b.Item_num from ITEM a,INCLUDE b where a.Item_id = b.Item_id and b.Customer_id = '"+cid+"' and a.Keep_num < b.Item_num * a.Relese_unit";
 		pstmt = conn.prepareStatement(query);
 		rs = pstmt.executeQuery();
+		System.out.println(cid+": "+query);
 		if(rs.next()){
 			pageContext.forward("purchase_fail.jsp");
 		}
@@ -67,7 +69,7 @@ conn.setAutoCommit(false);
 			System.out.print(conn.getTransactionIsolation());
 			// ORDERS INCLUDE ITEM SHIPPINGCOMPANY ->lock
 			//default public static final int  TRANSACTION_REPEATABLE_READ = 4
-			conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);//8
+			//conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);//8
 
 
 			
@@ -83,6 +85,7 @@ conn.setAutoCommit(false);
 				int ono=0;
 				query = "select Order_no from ORDERS order by Order_no DESC limit 1";/////////////////////
 				pstmt = conn.prepareStatement(query);
+				System.out.println(cid+": "+query);
 				rs = pstmt.executeQuery();
 				if(rs.next()){
 					ono = Integer.parseInt(rs.getString(1))+1;
@@ -90,18 +93,20 @@ conn.setAutoCommit(false);
 				//insert orders
 				query = "select Item_id,Item_num from INCLUDE where Customer_id = '"+cid+"'";
 				pstmt = conn.prepareStatement(query);
+				System.out.println(cid+": "+query);
 				rs = pstmt.executeQuery();
 				while(rs.next()){
 					String iid = rs.getString(1);
 					int snum = Integer.parseInt(rs.getString(2));
 					String query2 = "insert into ORDERS values ("+ono+", str_to_date('"+mTime+"','%Y-%m-%d'), '"+cid+"', '"+
 									iid+"', "+snum+")";
-					//System.out.println(query2);
+					System.out.println(cid+": "+query2);
 					pstmt = conn.prepareStatement(query2);
 					cnt = pstmt.executeUpdate();
 					
 					//update item Invalid value for getShort()
 					String query3 = "update ITEM set Keep_num = Keep_num - "+snum+"*Relese_unit where Item_id = '"+iid+"'";
+					System.out.println(cid+": "+query3);
 					//System.out.println(query3);
 					pstmt = conn.prepareStatement(query3);
 					cnt = pstmt.executeUpdate();
@@ -109,12 +114,14 @@ conn.setAutoCommit(false);
 				
 				//delete include
 				query = "delete from INCLUDE where Customer_id = '"+cid+"'";
+				System.out.println(cid+": "+query);
 				pstmt = conn.prepareStatement(query);
 				cnt = pstmt.executeUpdate();
 				
 				//update shipping
 				query = "select C_shipname from CUSTOMER where Customer_id = '"+cid+"'";
 				pstmt = conn.prepareStatement(query);
+				System.out.println(cid+": "+query);
 				rs = pstmt.executeQuery();
 				String cname = null;
 				if(rs.next()){
@@ -122,6 +129,7 @@ conn.setAutoCommit(false);
 				}
 				query = "update SHIPPINGCOMPANY set Shippingcomp_count = Shippingcomp_count +1 where Shippingcomp_name = '"+cname+"'";
 				pstmt = conn.prepareStatement(query);
+				System.out.println(cid+": "+query);
 				cnt = pstmt.executeUpdate();
 				
 				out.print("<div class=\"container\"><table><tr><th><h2>" + " [ purchasing is sucessed! ]" + "</h2></th></tr>");

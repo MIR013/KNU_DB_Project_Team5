@@ -69,7 +69,7 @@ conn.setAutoCommit(false);
 			System.out.print(conn.getTransactionIsolation());
 			// ORDERS INCLUDE ITEM SHIPPINGCOMPANY ->lock
 			//default public static final int  TRANSACTION_REPEATABLE_READ = 4
-			//conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);//8
+			conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);//8
 
 
 			
@@ -121,7 +121,6 @@ conn.setAutoCommit(false);
 				//update shipping
 				query = "select C_shipname from CUSTOMER where Customer_id = '"+cid+"'";
 				pstmt = conn.prepareStatement(query);
-				System.out.println(cid+": "+query);
 				rs = pstmt.executeQuery();
 				String cname = null;
 				if(rs.next()){
@@ -129,7 +128,6 @@ conn.setAutoCommit(false);
 				}
 				query = "update SHIPPINGCOMPANY set Shippingcomp_count = Shippingcomp_count +1 where Shippingcomp_name = '"+cname+"'";
 				pstmt = conn.prepareStatement(query);
-				System.out.println(cid+": "+query);
 				cnt = pstmt.executeUpdate();
 				
 				out.print("<div class=\"container\"><table><tr><th><h2>" + " [ purchasing is sucessed! ]" + "</h2></th></tr>");

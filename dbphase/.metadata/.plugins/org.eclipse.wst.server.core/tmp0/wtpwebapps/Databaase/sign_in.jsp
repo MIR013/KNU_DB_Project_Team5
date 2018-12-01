@@ -42,7 +42,7 @@ conn.setAutoCommit(false);
 		//login
 		
 		//check double login
-		System.out.print(session.getAttribute("signedUser"));
+		System.out.println(session.getAttribute("signedUser"));
 		if(session.getAttribute("signedUser")==null){
 			//no login user
 			session.setAttribute("signedUser", id);
