@@ -110,3 +110,17 @@
 127.0.0.1 - - [01/Dec/2018:02:36:49 -0800] "POST /Databaase/my_page.html HTTP/1.1" 200 872
 127.0.0.1 - - [01/Dec/2018:02:36:49 -0800] "GET /Databaase/mystyle.css HTTP/1.1" 304 -
 127.0.0.1 - - [01/Dec/2018:02:36:50 -0800] "GET /Databaase/main_page.jsp HTTP/1.1" 200 761
+127.0.0.1 - - [01/Dec/2018:03:04:22 -0800] "GET /Databaase/mystyle.css HTTP/1.1" 304 -
+127.0.0.1 - - [01/Dec/2018:03:04:22 -0800] "GET /Databaase/main.html HTTP/1.1" 304 -
+127.0.0.1 - - [01/Dec/2018:03:04:22 -0800] "GET /Databaase/mystyle.css HTTP/1.1" 304 -
+127.0.0.1 - - [01/Dec/2018:03:05:36 -0800] "POST /Databaase/sign_in.jsp HTTP/1.1" 200 397
+127.0.0.1 - - [01/Dec/2018:03:05:50 -0800] "GET /Databaase/main_page.html HTTP/1.1" 404 1102
+127.0.0.1 - - [01/Dec/2018:03:05:54 -0800] "GET /Databaase/main_page.jsp HTTP/1.1" 200 761
+127.0.0.1 - - [01/Dec/2018:03:05:56 -0800] "GET /Databaase/log_out.jsp HTTP/1.1" 200 371
+127.0.0.1 - - [01/Dec/2018:03:05:57 -0800] "POST /Databaase/main.html HTTP/1.1" 200 574
+127.0.0.1 - - [01/Dec/2018:03:06:04 -0800] "POST /Databaase/sign_in.jsp HTTP/1.1" 200 761
+127.0.0.1 - - [01/Dec/2018:03:06:06 -0800] "GET /Databaase/my_page.html HTTP/1.1" 200 872
+127.0.0.1 - - [01/Dec/2018:03:06:09 -0800] "GET /Databaase/my_page_shoppingbag.jsp HTTP/1.1" 200 836
+127.0.0.1 - - [01/Dec/2018:03:06:12 -0800] "GET /Databaase/purchase.jsp HTTP/1.1" 200 386
+127.0.0.1 - - [01/Dec/2018:03:06:16 -0800] "POST /Databaase/my_page.html HTTP/1.1" 200 872
+127.0.0.1 - - [01/Dec/2018:03:06:17 -0800] "GET /Databaase/my_page_order.jsp HTTP/1.1" 200 2346

@@ -53,7 +53,7 @@ conn.setAutoCommit(false);
 		
 		//do purchase
 		//stock lack-fail
-		query = "select a.Item_id,b.Item_num from ITEM a,INCLUDE b where a.Item_id = b.Item_id and b.Customer_id = '"+cid+"' and a.Keep_num < b.Item_num * a.Relese_unit";
+		query = "select a.Item_id,b.Item_num from ITEM a,INCLUDE b where a.Item_id = b.Item_id and b.Customer_id = '"+cid+"' and a.Keep_num < b.Item_num * a.Relese_unit LOCK IN SHARE MODE";
 		pstmt = conn.prepareStatement(query);
 		rs = pstmt.executeQuery();
 		System.out.println(cid+": "+query);
@@ -105,11 +105,12 @@ conn.setAutoCommit(false);
 					cnt = pstmt.executeUpdate();
 					
 					//for ITEM lock in share mode
-					String query4 = "select * from ITEM where Item_id = '"+iid+"' LOCK IN SHARE MODE";
+					/*
+					String query4 = "select * from ITEM where Item_id = '"+iid+"' and Keep_num LOCK IN SHARE MODE";
 					pstmt = conn.prepareStatement(query4);
 					ResultSet rs2 = pstmt.executeQuery();
 					System.out.println(cid+": "+query4);
-					
+					*/
 					
 					//update item Invalid value for getShort()
 					String query3 = "update ITEM set Keep_num = Keep_num - "+snum+"*Relese_unit where Item_id = '"+iid+"'";
