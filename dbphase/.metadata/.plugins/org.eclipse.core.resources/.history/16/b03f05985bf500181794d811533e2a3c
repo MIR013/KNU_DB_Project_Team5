@@ -58,7 +58,6 @@ conn.setAutoCommit(false);
 		rs = pstmt.executeQuery();
 		System.out.println(cid+": "+query);
 		if(rs.next()){
-			conn.commit();
 			pageContext.forward("purchase_fail.jsp");
 		}
 		else{
@@ -106,12 +105,12 @@ conn.setAutoCommit(false);
 					cnt = pstmt.executeUpdate();
 					
 					//for ITEM lock in share mode
-					
+					/*
 					String query4 = "select * from ITEM where Item_id = '"+iid+"' and Keep_num LOCK IN SHARE MODE";
 					pstmt = conn.prepareStatement(query4);
 					ResultSet rs2 = pstmt.executeQuery();
 					System.out.println(cid+": "+query4);
-					
+					*/
 					
 					//update item Invalid value for getShort()
 					String query3 = "update ITEM set Keep_num = Keep_num - "+snum+"*Relese_unit where Item_id = '"+iid+"'";
@@ -162,7 +161,7 @@ conn.setAutoCommit(false);
 				
 			}
 			catch(SQLException se){
-				out.print("<h2>rollback1</h2>");
+				out.print("<h2>rollback</h2>");
 				conn.rollback(); 
 			}
 			
@@ -172,10 +171,7 @@ conn.setAutoCommit(false);
 			conn.commit();
 			//conn.setTransactionIsolation(Connection.TRANSACTION_NONE);//0
 			conn.close();
-			out.print("<h2>rollback2</h2>");
 		}
-
-		out.print("<h2>rollback3</h2>");
 	}
 %>
 

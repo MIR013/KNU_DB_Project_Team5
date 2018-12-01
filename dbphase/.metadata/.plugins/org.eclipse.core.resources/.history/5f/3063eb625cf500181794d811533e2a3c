@@ -106,12 +106,12 @@ conn.setAutoCommit(false);
 					cnt = pstmt.executeUpdate();
 					
 					//for ITEM lock in share mode
-					
+					/*
 					String query4 = "select * from ITEM where Item_id = '"+iid+"' and Keep_num LOCK IN SHARE MODE";
 					pstmt = conn.prepareStatement(query4);
 					ResultSet rs2 = pstmt.executeQuery();
 					System.out.println(cid+": "+query4);
-					
+					*/
 					
 					//update item Invalid value for getShort()
 					String query3 = "update ITEM set Keep_num = Keep_num - "+snum+"*Relese_unit where Item_id = '"+iid+"'";
