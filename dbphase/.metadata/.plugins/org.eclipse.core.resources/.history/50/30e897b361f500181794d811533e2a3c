@@ -167,7 +167,7 @@ conn.setAutoCommit(false);
 					
 				}
 				catch(SQLException se){
-					//out.print("<h2>rollback1</h2>");
+					out.print("<h2>rollback1</h2>");
 					//conn.rollback(sp);
 					conn.rollback(); 
 				}
@@ -176,13 +176,13 @@ conn.setAutoCommit(false);
 				//conn.commit();
 				//conn.setTransactionIsolation(Connection.TRANSACTION_NONE);//0
 				
-				//out.print("<h2>rollback2</h2>");
+				out.print("<h2>rollback2</h2>");
 			}
-			//out.print("<h2>rollback3</h2>");
+			out.print("<h2>rollback3</h2>");
 		}
 		//out of while
 		conn.close();
-		//out.print("<h2> modify success </h2>");
+		out.print("<h2> modify success </h2>");
 
 	}
 %>
