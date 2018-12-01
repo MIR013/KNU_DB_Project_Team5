@@ -83,7 +83,7 @@ conn.setAutoCommit(false);
 				
 				//get next order_no
 				int ono=0;
-				query = "select Order_no from ORDERS order by Order_no DESC limit 1 LOCK IN SHARE MODE";/////////////////////
+				query = "select Order_no from ORDERS order by Order_no DESC limit 1";/////////////////////
 				pstmt = conn.prepareStatement(query);
 				System.out.println(cid+": "+query);
 				rs = pstmt.executeQuery();
@@ -91,7 +91,7 @@ conn.setAutoCommit(false);
 					ono = Integer.parseInt(rs.getString(1))+1;
 				}
 				//insert orders
-				query = "select Item_id,Item_num from INCLUDE where Customer_id = '"+cid+"' LOCK IN SHARE MODE";
+				query = "select Item_id,Item_num from INCLUDE where Customer_id = '"+cid+"'";
 				pstmt = conn.prepareStatement(query);
 				System.out.println(cid+": "+query);
 				rs = pstmt.executeQuery();
@@ -103,13 +103,6 @@ conn.setAutoCommit(false);
 					System.out.println(cid+": "+query2);
 					pstmt = conn.prepareStatement(query2);
 					cnt = pstmt.executeUpdate();
-					
-					//for ITEM lock in share mode
-					String query4 = "select * from ITEM where Item_id = '"+iid+"' LOCK IN SHARE MODE";
-					pstmt = conn.prepareStatement(query4);
-					ResultSet rs2 = pstmt.executeQuery();
-					System.out.println(cid+": "+query4);
-					
 					
 					//update item Invalid value for getShort()
 					String query3 = "update ITEM set Keep_num = Keep_num - "+snum+"*Relese_unit where Item_id = '"+iid+"'";
@@ -134,15 +127,6 @@ conn.setAutoCommit(false);
 				if(rs.next()){
 					cname = rs.getString(1);
 				}
-				
-				
-				//for SHIPPINGCOMPANY lock in share mode
-				String query4 = "select * from SHIPPINGCOMPANY where Shippingcomp_name = '"+cname+"' LOCK IN SHARE MODE";
-				pstmt = conn.prepareStatement(query4);
-				ResultSet rs2 = pstmt.executeQuery();
-				System.out.println(cid+": "+query4);
-				
-				
 				query = "update SHIPPINGCOMPANY set Shippingcomp_count = Shippingcomp_count +1 where Shippingcomp_name = '"+cname+"'";
 				pstmt = conn.prepareStatement(query);
 				System.out.println(cid+": "+query);

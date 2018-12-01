@@ -104,10 +104,10 @@ conn.setAutoCommit(false);
 					pstmt = conn.prepareStatement(query2);
 					cnt = pstmt.executeUpdate();
 					
-					//for ITEM lock in share mode
+					//for lock in share mode
 					String query4 = "select * from ITEM where Item_id = '"+iid+"' LOCK IN SHARE MODE";
 					pstmt = conn.prepareStatement(query4);
-					ResultSet rs2 = pstmt.executeQuery();
+					rs = pstmt.executeQuery();
 					System.out.println(cid+": "+query4);
 					
 					
@@ -134,15 +134,6 @@ conn.setAutoCommit(false);
 				if(rs.next()){
 					cname = rs.getString(1);
 				}
-				
-				
-				//for SHIPPINGCOMPANY lock in share mode
-				String query4 = "select * from SHIPPINGCOMPANY where Shippingcomp_name = '"+cname+"' LOCK IN SHARE MODE";
-				pstmt = conn.prepareStatement(query4);
-				ResultSet rs2 = pstmt.executeQuery();
-				System.out.println(cid+": "+query4);
-				
-				
 				query = "update SHIPPINGCOMPANY set Shippingcomp_count = Shippingcomp_count +1 where Shippingcomp_name = '"+cname+"'";
 				pstmt = conn.prepareStatement(query);
 				System.out.println(cid+": "+query);
