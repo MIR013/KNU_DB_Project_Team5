@@ -61,7 +61,7 @@ conn.setAutoCommit(false);
 			if(rs.next()){
 				conn.commit();
 				pageContext.forward("purchase_fail.jsp");
-				//sucess maybe it doesn't work
+				//sucess
 				break;
 			}
 			else{

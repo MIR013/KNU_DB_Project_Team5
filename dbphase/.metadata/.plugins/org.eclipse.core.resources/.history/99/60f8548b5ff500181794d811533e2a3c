@@ -61,8 +61,6 @@ conn.setAutoCommit(false);
 			if(rs.next()){
 				conn.commit();
 				pageContext.forward("purchase_fail.jsp");
-				//sucess maybe it doesn't work
-				break;
 			}
 			else{
 
@@ -161,7 +159,6 @@ conn.setAutoCommit(false);
 					out.print(nextpage);
 		
 					conn.commit();
-					
 					//sucess
 					break;
 					
@@ -182,7 +179,7 @@ conn.setAutoCommit(false);
 		}
 		//out of while
 		conn.close();
-		out.print("<h2> modify success </h2>");
+		out.print("<h2>rollback4</h2>");
 
 	}
 %>
